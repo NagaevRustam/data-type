@@ -1,55 +1,74 @@
 <?php
-$booleanVar = false;
-
-//$variable = 3.14;
- $variable = 3;
+// $variable = 3.14;
+// $variable = 3;
 // $variable = 'one';
 // $variable = true;
 // $variable = null;
-// $variable = [];
+ $variable = [];
 
-if (is_bool($booleanVar)) {
-    echo 'bool'. "\n";
-} else {
-    echo 'not bool'. "\n";
-} 
-// -> bool
-if (is_float($variable)) {
-    echo 'float'. "\n";
+//-> Использование if..elseif
+if (is_bool($variable)) {
+    echo 'bool';
+} elseif (is_float($variable)) {
+    echo 'float';
 } elseif(is_int($variable)) {
-    echo 'integer'. "\n";
-} 
-if (is_int($variable)){
-    echo 'integer'. "\n";
+    echo 'integer';
+} elseif (is_numeric($variable)) {
+     echo 'numeric';
+} elseif (is_string($variable)) {
+    echo 'string';
+} elseif (is_array($variable)) {
+    echo 'array';
+} elseif (is_object($variable)) {
+    echo 'object';
 } else {
-    echo 'not integer'. "\n";
+    echo 'did not identify the type';
 }
-// -> float
-
 ?>
 
-
-
-
-
+<?php
+//-> Реализация при помощи switch-case
+switch (true) {
+    case is_bool($variable):
+        $type = 'bool';
+        break;
+    case is_float($variable):
+        $type = 'float';
+        break;
+    case is_int($variable):
+        $type = 'integert';
+        break;
+    case is_numeric($variable):
+        $type = 'numeric';
+        break;
+    case is_string($variable):
+        $type = 'string';
+        break;
+    case is_array($variable):
+        $type = 'array';
+        break;
+    case is_object($variable):
+        $type = 'object';
+        break;     
+    default:
+        echo 'did not identify the type';
+}
+if  ($variable !== null) {
+    echo "type is $type";
+}
+?>
 
 <?php
-// $variable = 3.14;
-
-// switch (true) {
-//     case ...(...):
-//         $type = ...
-//         break;
-//     ...
-//     default:
-//         ... 
-// }
-
-// echo "type is $type"
-//is_bool() - Проверяет, является ли переменная булевой
-//is_int() - Проверяет, является ли переменная переменной целочисленного типа
-//is_numeric() - Проверяет, является ли переменная числом или строкой, содержащей число
-//is_string() - Проверяет, является ли переменная строкой
-//is_array() - Определяет, является ли переменная массивом
-//is_object() - Проверяет, является ли переменная объектом 
+//-> Реализация при помощи match
+$result = match (true) {
+    is_bool($variable) => 'bool',
+    is_float($variable) => 'float',
+    is_int($variable) => 'integer',
+    is_numeric($variable) => 'numeric',
+    is_string($variable) => 'string',
+    is_array($variable) => 'array',
+    is_object($variable) => 'is_object',
+    default => 'did not identify the type',
+};
+echo $result;
 ?>
